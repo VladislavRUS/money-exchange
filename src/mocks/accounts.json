@@ -1,0 +1,26 @@
+[
+  {
+    "id": "d1672f5f-6c7b-4c6f-a107-70e347b99636",
+    "title": "Main",
+    "currency": "GBP",
+    "value": 28600
+  },
+  {
+    "id": "fb119a5a-8d0d-49ed-a455-97bf90e64923",
+    "title": "Business trips",
+    "currency": "USD",
+    "value": 14700
+  },
+  {
+    "id": "6fae3aa6-9ff1-4008-a150-c00c1c2037e2",
+    "title": "Payments",
+    "currency": "AUD",
+    "value": 5300
+  },
+  {
+    "id": "adec0b23-acbc-4479-b2bf-905c0e5e4876",
+    "title": "European suppliers",
+    "currency": "EUR",
+    "value": 3490
+  }
+]

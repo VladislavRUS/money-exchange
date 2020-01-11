@@ -1,27 +1,30 @@
 import React from 'react';
 import { Wrapper, LinkContent, StyledNavLink } from './Links.styles';
 import { Routes } from '../../../../constants/Routes';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+
+import { withTranslation, WithTranslation } from 'react-i18next';
 
 const links = [
   {
     to: Routes.ACCOUNTS,
-    name: 'Accounts',
+    nameTranslationKey: 'app.links.accounts',
   },
   {
     to: Routes.CARDS,
-    name: 'Cards',
+    nameTranslationKey: 'app.links.cards',
   },
 ];
 
-const Links: React.FC<RouteComponentProps> = ({ location }) => (
+const Links: React.FC<WithTranslation> = ({ t }) => (
   <Wrapper>
     {links.map(link => (
       <StyledNavLink to={link.to} key={link.to}>
-        <LinkContent isActive={location.pathname === link.to}>{link.name}</LinkContent>
+        <LinkContent>{t(link.nameTranslationKey)}</LinkContent>
       </StyledNavLink>
     ))}
   </Wrapper>
 );
 
-export default withRouter(Links);
+const translated = withTranslation();
+
+export default translated(Links);

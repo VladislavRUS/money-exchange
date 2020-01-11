@@ -1,3 +1,3 @@
-import BaseButton from './BaseButton';
+import BaseButton, { BaseButtonLook } from './BaseButton';
 
-export { BaseButton };
+export { BaseButton, BaseButtonLook };

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Avatar = styled.div<{ avatarUrl: string }>`
-  margin-bottom: 19px;
+  margin-bottom: 16px;
   width: 64px;
   height: 64px;
   background-image: url(${props => props.avatarUrl});

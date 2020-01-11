@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 import './index.css';
-import { App } from './views/App';
+import { App } from './entry/App';
 import { createBrowserHistory } from 'history';
 import configureStore from './configureStore';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import './i18n';
 
 export const history = createBrowserHistory();
 // @ts-ignore

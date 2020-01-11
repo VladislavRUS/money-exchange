@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledButton } from './BaseButton.styles';
 
-export enum BaseButtonMode {
+export enum BaseButtonLook {
   SUCCESS,
   DEFAULT,
 }
@@ -10,16 +10,18 @@ interface IBaseButtonProps {
   onClick: () => void;
   isDisabled?: boolean;
   isLoading?: boolean;
-  mode?: BaseButtonMode;
+  look?: BaseButtonLook;
+  showBorder?: boolean;
 }
 
 export const RegularButton: React.FC<IBaseButtonProps> = ({
   children,
   isDisabled = false,
   onClick,
-  mode = BaseButtonMode.DEFAULT,
+  look = BaseButtonLook.DEFAULT,
+  showBorder = false,
 }) => (
-  <StyledButton isDisabled={isDisabled} onClick={onClick} mode={mode}>
+  <StyledButton isDisabled={isDisabled} onClick={onClick} look={look} showBorder={showBorder}>
     {children}
   </StyledButton>
 );

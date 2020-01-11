@@ -1,0 +1,9 @@
+{
+  "app.demoAccount": "Demo account",
+  "app.links.accounts": "Accounts",
+  "app.links.cards": "Cards",
+  "accounts.totalBalance": "All accounts balance in",
+  "accounts.hints.topUp": "Top up",
+  "accounts.hints.exchange": "Exchange",
+  "accounts.hints.send": "Send"
+}

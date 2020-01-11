@@ -9,11 +9,7 @@ export const Wrapper = styled.div`
   padding-top: 100px;
 `;
 
-export const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
-`;
-
-export const LinkContent = styled.div<{ isActive: boolean }>`
+export const LinkContent = styled.div`
   height: 56px;
   line-height: 56px;
   padding-left: 32px;
@@ -21,12 +17,16 @@ export const LinkContent = styled.div<{ isActive: boolean }>`
   font-size: 16px;
   color: #8b959e;
   border-left: 2px solid transparent;
+`;
 
-  ${props =>
-    props.isActive &&
-    css`
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+
+  &.active {
+    ${LinkContent} {
       border-left: 2px solid #eb008d;
       color: #191c1e;
       font-weight: 500;
-    `}
+    }
+  }
 `;

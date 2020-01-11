@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
-import { BaseButtonMode } from '../BaseButton/BaseButton';
+import { BaseButtonLook } from '../BaseButton';
 
-export const Text = styled.div<{ mode?: BaseButtonMode }>`
+export const Text = styled.div<{ look?: BaseButtonLook }>`
   font-size: 14px;
 
   ${props =>
-    props.mode === BaseButtonMode.SUCCESS &&
+    props.look === BaseButtonLook.SUCCESS &&
     css`
       color: #fff;
     `}

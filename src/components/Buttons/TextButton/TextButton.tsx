@@ -1,19 +1,19 @@
 import React from 'react';
-import { BaseButton } from '../BaseButton';
 import { Text } from './TextButton.styles';
+import { RegularButton } from '../RegularButton';
 
-type TBaseButtonProps = React.ComponentProps<typeof BaseButton>;
+type TPaddedButtonProps = React.ComponentProps<typeof RegularButton>;
 
 interface ITextButtonProps {
   text: string;
 }
 
-type TProps = ITextButtonProps & TBaseButtonProps;
+type TProps = ITextButtonProps & TPaddedButtonProps;
 
 const TextButton: React.FC<TProps> = ({ text, ...props }) => (
-  <BaseButton {...props}>
-    <Text mode={props.mode}>{text}</Text>
-  </BaseButton>
+  <RegularButton {...props}>
+    <Text look={props.look}>{text}</Text>
+  </RegularButton>
 );
 
 export default TextButton;

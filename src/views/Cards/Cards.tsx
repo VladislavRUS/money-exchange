@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Cards = () => null;
+const Cards = () => <div>Cards</div>;
 
 export default Cards;

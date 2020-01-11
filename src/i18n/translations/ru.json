@@ -1,9 +1,12 @@
 {
+  "accounts.allAccounts": "Все аккаунты",
+  "accounts.hints.exchange": "Обменять",
+  "accounts.hints.send": "Отправить",
+  "accounts.hints.topUp": "Пополнить",
+  "accounts.totalBalance": "Весь баланс в валюте",
   "app.demoAccount": "Демо аккаунт",
   "app.links.accounts": "Аккаунты",
   "app.links.cards": "Карты",
-  "accounts.totalBalance": "Весь баланс в валюте",
-  "accounts.hints.topUp": "Пополнить",
-  "accounts.hints.exchange": "Обменять",
-  "accounts.hints.send": "Отправить"
+  "app.links.transactions": "Транзакции",
+  "exchange.title": "Обмен денег"
 }

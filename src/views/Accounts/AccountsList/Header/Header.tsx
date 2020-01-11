@@ -1,10 +1,13 @@
 import React from 'react';
 import { Wrapper, Title } from './Header.styles';
+import { withTranslation, WithTranslation } from 'react-i18next';
 
-const Header = () => (
+const Header: React.FC<WithTranslation> = ({ t }) => (
   <Wrapper>
-    <Title>All accounts</Title>
+    <Title>{t('accounts.allAccounts')}</Title>
   </Wrapper>
 );
 
-export default Header;
+const translated = withTranslation();
+
+export default translated(Header);

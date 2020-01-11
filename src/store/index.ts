@@ -7,11 +7,14 @@ import { accountsReducer } from './accounts/reducer';
 import { IAccountsState } from './accounts/types';
 import { currenciesReducer } from './currencies/reducer';
 import { ICurrenciesState } from './currencies/types';
+import { exchangeReducer } from './echange/reducer';
+import { IExchangeState } from './echange/types';
 
 export interface IApplicationState {
   user: IUserState;
   accounts: IAccountsState;
   currencies: ICurrenciesState;
+  exchange: IExchangeState;
 }
 
 export const createRootReducer = (history: History) =>
@@ -19,6 +22,7 @@ export const createRootReducer = (history: History) =>
     user: userReducer,
     accounts: accountsReducer,
     currencies: currenciesReducer,
+    exchange: exchangeReducer,
     router: connectRouter(history),
   });
 

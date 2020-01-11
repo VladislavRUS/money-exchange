@@ -19,7 +19,7 @@ export const StyledButton = styled.button<{ isDisabled: boolean; look: BaseButto
       background-color: #fff;
 
       &:active {
-        background-color: rgba(0, 0, 0, 0.03);
+        background-color: #d8d8d8;
       }
     `}
     

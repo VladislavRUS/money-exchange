@@ -4,28 +4,28 @@ import { Header } from './Header';
 import { Switch, Route } from 'react-router-dom';
 import { Routes } from '../../constants/Routes';
 import { InlineNavbar } from '../../components/InlineNavbar';
-import { INavbarLink } from '../../components/InlineNavbar/InlineNavbar';
+import { withTranslation, WithTranslation } from 'react-i18next';
 
 const AccountsList = lazy(() => import('./AccountsList'));
 const Transactions = lazy(() => import('./Transactions'));
 
-const links: INavbarLink[] = [
+const links = [
   {
     to: Routes.ACCOUNTS,
-    title: 'Accounts',
+    titleTranslationKey: 'app.links.accounts',
     exact: true,
   },
   {
     to: Routes.TRANSACTIONS,
-    title: 'Transactions',
+    titleTranslationKey: 'app.links.transactions',
   },
 ];
 
-const Accounts = () => (
+const Accounts: React.FC<WithTranslation> = ({ t }) => (
   <Wrapper>
     <Header />
     <NavbarWrapper>
-      <InlineNavbar links={links} />
+      <InlineNavbar links={links.map(link => ({ ...link, title: t(link.titleTranslationKey) }))} />
     </NavbarWrapper>
     <Suspense fallback={null}>
       <Switch>
@@ -36,4 +36,6 @@ const Accounts = () => (
   </Wrapper>
 );
 
-export default Accounts;
+const translated = withTranslation();
+
+export default translated(Accounts);

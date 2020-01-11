@@ -1,9 +1,12 @@
 {
+  "accounts.allAccounts": "All accounts",
+  "accounts.hints.exchange": "Exchange",
+  "accounts.hints.send": "Send",
+  "accounts.hints.topUp": "Top up",
+  "accounts.totalBalance": "All accounts balance in",
   "app.demoAccount": "Demo account",
   "app.links.accounts": "Accounts",
   "app.links.cards": "Cards",
-  "accounts.totalBalance": "All accounts balance in",
-  "accounts.hints.topUp": "Top up",
-  "accounts.hints.exchange": "Exchange",
-  "accounts.hints.send": "Send"
+  "app.links.transactions": "Transactions",
+  "exchange.title": "Exchange money"
 }

@@ -19,8 +19,8 @@ export const Wrapper = styled.div<{ mode: BaseExchangeMode }>`
 
 export const SelectWrapper = styled.div`
   margin-top: 10px;
+  width: 100%;
   max-width: 416px;
-  border: 1px solid black;
 `;
 
 export const BigInput = styled.input`

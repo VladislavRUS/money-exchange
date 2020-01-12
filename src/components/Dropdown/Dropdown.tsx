@@ -10,7 +10,8 @@ interface IDropdownProps {
 }
 
 class Dropdown extends React.Component<IDropdownProps> {
-  ref: React.RefObject<HTMLElement> | null = null;
+  elementRef: React.RefObject<HTMLElement> | null = null;
+  targetRef: React.RefObject<HTMLElement> | null = null;
 
   componentDidUpdate(): void {
     if (this.props.isOpened) {
@@ -21,7 +22,11 @@ class Dropdown extends React.Component<IDropdownProps> {
   }
 
   handleClick = (event: MouseEvent) => {
-    if (this.ref && this.ref.current && this.ref.current.contains(event.target as any)) {
+    if (this.targetRef && this.targetRef.current && this.targetRef.current.contains(event.target as any)) {
+      return;
+    }
+
+    if (this.elementRef && this.elementRef.current && this.elementRef.current.contains(event.target as any)) {
       return;
     }
 
@@ -35,14 +40,21 @@ class Dropdown extends React.Component<IDropdownProps> {
       return null;
     }
 
-    this.ref = ref;
+    this.elementRef = ref;
     return this.props.content(ref);
   };
 
-  render() {
-    const { attachment = 'top center', children } = this.props;
+  renderTarget = (ref: any) => {
+    this.targetRef = ref;
+    return this.props.children(ref);
+  };
 
-    return <TetherComponent attachment={attachment} renderTarget={children} renderElement={this.renderElement} />;
+  render() {
+    const { attachment = 'top center' } = this.props;
+
+    return (
+      <TetherComponent attachment={attachment} renderTarget={this.renderTarget} renderElement={this.renderElement} />
+    );
   }
 }
 

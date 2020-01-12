@@ -50,7 +50,18 @@ class Exchange extends React.Component<TProps> {
   }
 
   render() {
-    const { fromAccount, toAccount, fromValue, toValue, changeFromValue, changeToValue, t, reverse } = this.props;
+    const {
+      fromAccount,
+      toAccount,
+      fromValue,
+      toValue,
+      changeFromValue,
+      changeToValue,
+      setFromAccount,
+      setToAccount,
+      reverse,
+      t,
+    } = this.props;
 
     return (
       <Wrapper>
@@ -66,8 +77,22 @@ class Exchange extends React.Component<TProps> {
             <FiX color={'#0075eb'} size={24} />
           </RoundedLink>
         </CloseWrapper>
-        {fromAccount && <BaseExchange account={fromAccount} value={fromValue} onChangeValue={changeFromValue} />}
-        {toAccount && <BaseExchange account={toAccount} value={toValue} onChangeValue={changeToValue} />}
+        {fromAccount && (
+          <BaseExchange
+            account={fromAccount}
+            value={fromValue}
+            onChangeValue={changeFromValue}
+            onSelectAccount={setFromAccount}
+          />
+        )}
+        {toAccount && (
+          <BaseExchange
+            account={toAccount}
+            value={toValue}
+            onChangeValue={changeToValue}
+            onSelectAccount={setToAccount}
+          />
+        )}
       </Wrapper>
     );
   }

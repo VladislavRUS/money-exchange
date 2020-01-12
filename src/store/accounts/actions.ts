@@ -3,3 +3,4 @@ import { AccountsActionsTypes } from './types';
 
 export const setGridViewMode = () => action(AccountsActionsTypes.SET_GRID_VIEW_MODE);
 export const setTableViewMode = () => action(AccountsActionsTypes.SET_TABLE_VIEW_MODE);
+export const setBaseCurrency = (baseCurrency: string) => action(AccountsActionsTypes.SET_BASE_CURRENCY, baseCurrency);

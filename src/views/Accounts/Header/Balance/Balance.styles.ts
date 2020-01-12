@@ -34,4 +34,5 @@ export const Flag = styled.div<{ flagImage: string }>`
 export const BalanceIn = styled.div`
   font-size: 16px;
   color: #8b959e;
+  margin-right: 4px;
 `;

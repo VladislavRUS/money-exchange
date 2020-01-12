@@ -14,4 +14,5 @@ export const initialState: IAccountsState = {
 export const accountsReducer = createReducer<IAccountsState, AccountsAction>(initialState, {
   [AccountsActionsTypes.SET_GRID_VIEW_MODE]: state => ({ ...state, viewMode: 'grid' }),
   [AccountsActionsTypes.SET_TABLE_VIEW_MODE]: state => ({ ...state, viewMode: 'table' }),
+  [AccountsActionsTypes.SET_BASE_CURRENCY]: (state, action) => ({ ...state, baseCurrency: action.payload }),
 });

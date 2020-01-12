@@ -14,11 +14,12 @@ module.exports = {
         }
     },
     rules: {
-        "@typescript-eslint/interface-name-prefix": ['off'],
-        "@typescript-eslint/ban-ts-ignore": ['off'],
-        "react/prop-types": ['off'],
-        "@typescript-eslint/explicit-function-return-type": ['off'],
-        "@typescript-eslint/no-unused-vars": [2]
+        "@typescript-eslint/interface-name-prefix": ["off"],
+        "@typescript-eslint/ban-ts-ignore": ["off"],
+        "react/prop-types": ["off"],
+        "@typescript-eslint/explicit-function-return-type": ["off"],
+        "@typescript-eslint/no-unused-vars": [2],
+        "react/display-name": ["off"]
     },
     settings: {
         react: {

@@ -30,7 +30,7 @@ const AccountItem: React.FC<TProps> = ({ account, symbol, flag }) => (
         <Title>{account.title}</Title>
         <Currency>{account.currency}</Currency>
       </Information>
-      <Flag flagImage={require(`../../../../../assets/icons/flags/${flag}`)} />
+      <Flag flagImage={flag} />
     </Header>
     <Value>
       {symbol}

@@ -7,7 +7,7 @@
     "rounding": 0,
     "code": "GBP",
     "name_plural": "British pounds sterling",
-    "flag": "gb.png"
+    "flag": "https://cdn.countryflags.com/thumbs/united-kingdom/flag-round-500.png"
   },
   "USD": {
     "symbol": "$",
@@ -17,7 +17,7 @@
     "rounding": 0,
     "code": "USD",
     "name_plural": "US dollars",
-    "flag": "us.png"
+    "flag": "https://cdn.countryflags.com/thumbs/united-states-of-america/flag-round-250.png"
   },
   "AUD": {
     "symbol": "AU$",
@@ -27,7 +27,7 @@
     "rounding": 0,
     "code": "AUD",
     "name_plural": "Australian dollars",
-    "flag": "au.png"
+    "flag": "https://cdn.countryflags.com/thumbs/australia/flag-round-500.png"
   },
   "EUR": {
     "symbol": "€",
@@ -37,6 +37,6 @@
     "rounding": 0,
     "code": "EUR",
     "name_plural": "euros",
-    "flag": "eu.png"
+    "flag": "https://image.flaticon.com/icons/svg/323/323344.svg"
   }
 }

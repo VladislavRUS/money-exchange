@@ -9,12 +9,18 @@ import { currenciesReducer } from './currencies/reducer';
 import { ICurrenciesState } from './currencies/types';
 import { exchangeReducer } from './echange/reducer';
 import { IExchangeState } from './echange/types';
+import { exchangeSaga } from './echange/sagas';
+import { all, fork } from 'redux-saga/effects';
+import { ratesSaga } from './rates/sagas';
+import { IRatesState } from './rates/types';
+import { ratesReducer } from './rates/reducer';
 
 export interface IApplicationState {
   user: IUserState;
   accounts: IAccountsState;
   currencies: ICurrenciesState;
   exchange: IExchangeState;
+  rates: IRatesState;
 }
 
 export const createRootReducer = (history: History) =>
@@ -23,8 +29,10 @@ export const createRootReducer = (history: History) =>
     accounts: accountsReducer,
     currencies: currenciesReducer,
     exchange: exchangeReducer,
+    rates: ratesReducer,
     router: connectRouter(history),
   });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export function* rootSaga() {}
+export function* rootSaga() {
+  yield all([fork(exchangeSaga), fork(ratesSaga)]);
+}

@@ -1,11 +1,19 @@
 import { IApplicationState } from '../index';
 
 export const getTotalBalance = (state: IApplicationState) => {
-  let sum = 0;
+  const { rates } = state.rates;
+
+  if (!rates) {
+    return 0;
+  }
+
+  let sumInDollars = 0;
 
   state.accounts.list.forEach(account => {
-    sum += account.value;
+    sumInDollars += account.value * rates[account.currency];
   });
 
-  return sum;
+  const { baseCurrency } = state.accounts;
+
+  return sumInDollars * rates[baseCurrency];
 };

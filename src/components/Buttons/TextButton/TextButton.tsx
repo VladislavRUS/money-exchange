@@ -1,19 +1,16 @@
 import React from 'react';
-import { Text } from './TextButton.styles';
-import { RegularButton } from '../RegularButton';
-
-type TPaddedButtonProps = React.ComponentProps<typeof RegularButton>;
+import { Text, StyledButton } from './TextButton.styles';
 
 interface ITextButtonProps {
   text: string;
+  onClick: () => void;
+  color?: string;
 }
 
-type TProps = ITextButtonProps & TPaddedButtonProps;
-
-const TextButton: React.FC<TProps> = ({ text, ...props }) => (
-  <RegularButton {...props}>
-    <Text look={props.look}>{text}</Text>
-  </RegularButton>
-);
+const TextButton = React.forwardRef((props: ITextButtonProps, ref?: any) => (
+  <StyledButton onClick={props.onClick} ref={ref}>
+    <Text color={props.color}>{props.text}</Text>
+  </StyledButton>
+));
 
 export default TextButton;

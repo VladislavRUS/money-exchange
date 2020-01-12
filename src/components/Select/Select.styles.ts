@@ -19,4 +19,5 @@ export const Wrapper = styled.div<{ width: number }>`
   box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.3);
   animation: ${slideIn} 0.2s ease;
   border-radius: 6px;
+  overflow: hidden;
 `;

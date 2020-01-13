@@ -5,6 +5,7 @@ import { RegularInput } from '../../../components/RegularInput';
 import { Select } from '../../../components/Select';
 import { IApplicationState } from '../../../store';
 import { connect } from 'react-redux';
+import { i18n } from '../../../i18n';
 
 export enum BaseExchangeMode {
   FROM,
@@ -18,10 +19,12 @@ interface IBaseExchangeProps {
   value: number;
   onChangeValue: (value: number) => void;
   onSelectAccount: (account: IAccount) => void;
+  onSetBaseAccount: (account: IAccount) => void;
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
   accounts: state.accounts.list,
+  baseAccount: state.exchange.baseAccount,
 });
 
 type TStateProps = ReturnType<typeof mapStateToProps>;
@@ -50,6 +53,14 @@ class BaseExchange extends React.Component<TProps, TState> {
     }
   }
 
+  getFormattedValue(value: number) {
+    return new Intl.NumberFormat(i18n.language, {
+      useGrouping: true,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(value);
+  }
+
   getTitleFromAccount = (account: IAccount) => account.currency + ' ' + account.title;
 
   onOpenSelect = () => {
@@ -65,8 +76,15 @@ class BaseExchange extends React.Component<TProps, TState> {
   };
 
   onChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const withoutNumbers = event.currentTarget.value.replace(/\D/, '');
-    this.props.onChangeValue(+withoutNumbers);
+    const value = event.currentTarget.value || '0';
+
+    if (!/^[0-9.,]+$/.test(value)) {
+      return;
+    }
+
+    const parsedValue = parseFloat(value.replace(/,/g, ''));
+
+    this.props.onChangeValue(parsedValue);
   };
 
   onChangeSearch = (searchStr: string) => {
@@ -100,8 +118,14 @@ class BaseExchange extends React.Component<TProps, TState> {
     );
   };
 
+  onFocus = () => {
+    this.props.onSetBaseAccount(this.props.account);
+  };
+
   render() {
     const { value, mode = BaseExchangeMode.FROM } = this.props;
+
+    const formattedValue = value ? this.getFormattedValue(value) : '';
 
     return (
       <Wrapper mode={mode}>
@@ -122,7 +146,7 @@ class BaseExchange extends React.Component<TProps, TState> {
             )}
           </Select>
         </SelectWrapper>
-        <BigInput onChange={this.onChange} placeholder={'0'} value={value} />
+        <BigInput onChange={this.onChange} placeholder={'0'} value={formattedValue} onFocus={this.onFocus} />
       </Wrapper>
     );
   }

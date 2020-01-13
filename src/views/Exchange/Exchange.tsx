@@ -4,18 +4,15 @@ import { Wrapper, Title, ExchangeButtonWrapper, CloseWrapper, Overlay } from './
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { RoundedButton } from '../../components/Buttons/RoundedButton';
 import { FiMaximize2, FiX } from 'react-icons/fi';
-import { changeFromValue, changeToValue, reverse, setFromAccount, setToAccount } from '../../store/echange/actions';
+import { reverse, setBaseAccount, setFromAccount, setToAccount } from '../../store/echange/actions';
 import { connect } from 'react-redux';
 import { RoundedLink } from '../../components/RoundedLink';
 import { Routes } from '../../constants/Routes';
 import { IApplicationState } from '../../store';
-import { BaseExchange } from './BaseExchange';
+import { ExchangeFrom } from './ExchangeFrom';
+import { ExchangeTo } from './ExchangeTo';
 
 const mapStateToProps = (state: IApplicationState) => ({
-  fromAccount: state.exchange.fromAccount,
-  toAccount: state.exchange.toAccount,
-  fromValue: state.exchange.fromValue,
-  toValue: state.exchange.toValue,
   accounts: state.accounts.list,
 });
 
@@ -25,10 +22,9 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
       reverse,
+      setBaseAccount,
       setFromAccount,
       setToAccount,
-      changeFromValue,
-      changeToValue,
     },
     dispatch,
   );
@@ -44,24 +40,14 @@ class Exchange extends React.Component<TProps> {
     if (accounts.length > 1) {
       const [first, second] = accounts;
 
+      this.props.setBaseAccount(first);
       this.props.setFromAccount(first);
       this.props.setToAccount(second);
     }
   }
 
   render() {
-    const {
-      fromAccount,
-      toAccount,
-      fromValue,
-      toValue,
-      changeFromValue,
-      changeToValue,
-      setFromAccount,
-      setToAccount,
-      reverse,
-      t,
-    } = this.props;
+    const { reverse, t } = this.props;
 
     return (
       <Wrapper>
@@ -77,22 +63,9 @@ class Exchange extends React.Component<TProps> {
             <FiX color={'#0075eb'} size={24} />
           </RoundedLink>
         </CloseWrapper>
-        {fromAccount && (
-          <BaseExchange
-            account={fromAccount}
-            value={fromValue}
-            onChangeValue={changeFromValue}
-            onSelectAccount={setFromAccount}
-          />
-        )}
-        {toAccount && (
-          <BaseExchange
-            account={toAccount}
-            value={toValue}
-            onChangeValue={changeToValue}
-            onSelectAccount={setToAccount}
-          />
-        )}
+
+        <ExchangeFrom />
+        <ExchangeTo />
       </Wrapper>
     );
   }

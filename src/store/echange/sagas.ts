@@ -17,6 +17,7 @@ import { getRates } from '../rates/selectors';
 import { getBaseAccount, getFromAccount, getFromValue, getToAccount, getToValue } from './selectors';
 import { IAccount } from '../accounts/types';
 import { IRates } from '../rates/types';
+import { convertBetweenCurrencies } from '../../utils/covertBetweenCurrencies';
 
 function* handleChangeFromValue(action: ReturnType<typeof changeFromValue>) {
   yield put(setFromValue(action.payload));
@@ -42,12 +43,10 @@ function* handleUpdateValues() {
   const currentToValue: number = yield select(getToValue);
 
   if (fromAccount === baseAccount) {
-    const baseValueInDollars = currentFromValue / rates[fromAccount.currency];
-    const toValue = baseValueInDollars * rates[toAccount.currency];
+    const toValue = convertBetweenCurrencies(fromAccount.currency, currentFromValue, toAccount.currency, rates);
     yield put(setToValue(toValue));
   } else {
-    const baseValueInDollars = currentToValue / rates[toAccount.currency];
-    const fromValue = baseValueInDollars * rates[fromAccount.currency];
+    const fromValue = convertBetweenCurrencies(toAccount.currency, currentToValue, fromAccount.currency, rates);
     yield put(setFromValue(fromValue));
   }
 }

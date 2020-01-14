@@ -23,6 +23,7 @@ export const SelectWrapper = styled.div`
 `;
 
 export const ExchangeContentWrapper = styled.div`
+  position: relative;
   flex-grow: 1;
   display: flex;
   flex-direction: row;
@@ -34,13 +35,13 @@ export const Sign = styled.div`
   margin-right: 5px;
 `;
 
-export const Currency = styled.label.attrs({ htmlFor: 'exchange-input' })`
+export const Currency = styled.label`
   display: block;
   padding-right: 5px;
   cursor: text;
 `;
 
-export const ExchangeInput = styled.input.attrs({ id: 'exchange-input' })`
+export const ExchangeInput = styled.input`
   display: inline-block;
   flex-shrink: 1;
   border: none;
@@ -68,3 +69,22 @@ export const ExchangeInputWrapper = styled.div<{ asPlaceholder: boolean; fontSiz
       }
     `}
 `;
+
+export const CurrentRate = styled.div`
+  position: absolute;
+  bottom: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(139, 149, 158);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+export const RateTitle = styled.div`
+  margin-bottom: 5px;
+`;
+
+export const RateValue = styled.div``;

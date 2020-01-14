@@ -8,5 +8,6 @@
   "app.links.accounts": "Аккаунты",
   "app.links.cards": "Карты",
   "app.links.transactions": "Транзакции",
-  "exchange.title": "Обмен денег"
+  "exchange.title": "Обмен денег",
+  "exchange.currentRate": "Текущий курс"
 }

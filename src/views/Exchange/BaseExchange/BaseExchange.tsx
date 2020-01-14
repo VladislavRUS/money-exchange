@@ -7,18 +7,23 @@ import {
   Currency,
   Sign,
   ExchangeContentWrapper,
+  CurrentRate,
+  RateTitle,
+  RateValue,
 } from './BaseExchange.styles';
 import { IAccount } from '../../../store/accounts/types';
 import { RegularInput } from '../../../components/RegularInput';
 import { Select } from '../../../components/Select';
 import { IApplicationState } from '../../../store';
 import { connect } from 'react-redux';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { convertBetweenCurrencies } from '../../../utils/covertBetweenCurrencies';
 
 const MAX_VALUE_LENGTH = 15;
 
 export enum BaseExchangeMode {
-  FROM,
-  TO,
+  FROM = 'exchange-from',
+  TO = 'exchange-to',
 }
 
 interface IBaseExchangeProps {
@@ -35,11 +40,14 @@ const mapStateToProps = (state: IApplicationState) => ({
   accounts: state.accounts.list,
   baseAccount: state.exchange.baseAccount,
   currencies: state.currencies.data,
+  fromAccount: state.exchange.fromAccount,
+  toAccount: state.exchange.toAccount,
+  rates: state.rates.rates,
 });
 
 type TStateProps = ReturnType<typeof mapStateToProps>;
 
-type TProps = TStateProps & IBaseExchangeProps;
+type TProps = TStateProps & IBaseExchangeProps & WithTranslation;
 
 type TState = {
   isSelectOpened: boolean;
@@ -81,6 +89,25 @@ class BaseExchange extends React.Component<TProps, TState> {
     }
 
     return 4;
+  }
+
+  get currentRate() {
+    const { baseAccount, fromAccount, toAccount, currencies, rates } = this.props;
+
+    if (fromAccount && toAccount && rates) {
+      const fromAccountSymbol = currencies[fromAccount.currency].symbol;
+      const toAccountSymbol = currencies[toAccount.currency].symbol;
+
+      if (fromAccount === baseAccount) {
+        const toValue = convertBetweenCurrencies(fromAccount.currency, 1, toAccount.currency, rates);
+        return `${fromAccountSymbol}1 = ${toAccountSymbol}${toValue.toFixed(2)}`;
+      } else {
+        const fromValue = convertBetweenCurrencies(toAccount.currency, 1, fromAccount.currency, rates);
+        return `${toAccountSymbol}1 = ${fromAccountSymbol}${fromValue.toFixed(2)}`;
+      }
+    }
+
+    return '';
   }
 
   getCaretPosition(value: string, position: number) {
@@ -174,7 +201,7 @@ class BaseExchange extends React.Component<TProps, TState> {
   };
 
   render() {
-    const { value, currencies, account, mode = BaseExchangeMode.FROM } = this.props;
+    const { value, currencies, account, baseAccount, mode = BaseExchangeMode.FROM, t } = this.props;
 
     const inputValue = value === '0' ? '' : value;
     const currencySymbol = currencies[account.currency].symbol;
@@ -201,8 +228,9 @@ class BaseExchange extends React.Component<TProps, TState> {
         <ExchangeContentWrapper>
           <ExchangeInputWrapper asPlaceholder={value === '0'} fontSize={this.fontSize}>
             {inputValue && <Sign>{mode === BaseExchangeMode.FROM ? '-' : '+'}</Sign>}
-            <Currency>{currencySymbol}</Currency>
+            <Currency htmlFor={mode.toString()}>{currencySymbol}</Currency>
             <ExchangeInput
+              id={mode.toString()}
               onChange={this.onChange}
               value={inputValue}
               placeholder={'0'}
@@ -212,12 +240,20 @@ class BaseExchange extends React.Component<TProps, TState> {
               size={value.length}
             />
           </ExchangeInputWrapper>
+
+          {baseAccount === account && (
+            <CurrentRate>
+              <RateTitle>{t('exchange.currentRate')}</RateTitle>
+              <RateValue>{this.currentRate}</RateValue>
+            </CurrentRate>
+          )}
         </ExchangeContentWrapper>
       </Wrapper>
     );
   }
 }
 
+const translated = withTranslation();
 const ConnectedBaseExchange = connect(mapStateToProps)(BaseExchange);
 
-export default ConnectedBaseExchange;
+export default translated(ConnectedBaseExchange);

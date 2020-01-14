@@ -40,6 +40,7 @@ export const StyledInput = styled.input`
   font-size: 16px;
   width: 100%;
   border: none;
+  background-color: transparent;
 
   &:focus {
     & + ${BottomLine} {

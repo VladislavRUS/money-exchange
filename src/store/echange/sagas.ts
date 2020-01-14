@@ -5,6 +5,7 @@ import {
   changeFromValue,
   changeToAccount,
   changeToValue,
+  reverse,
   setBaseAccount,
   setFromAccount,
   setFromValue,
@@ -69,13 +70,25 @@ function* handleReverse() {
 }
 
 function* handleChangeFromAccount(action: ReturnType<typeof changeFromAccount>) {
-  yield put(setFromAccount(action.payload));
-  yield put(updateValues());
+  const toAccount: IAccount = yield select(getToAccount);
+
+  if (action.payload === toAccount) {
+    yield put(reverse());
+  } else {
+    yield put(setFromAccount(action.payload));
+    yield put(updateValues());
+  }
 }
 
 function* handleChangeToAccount(action: ReturnType<typeof changeToAccount>) {
-  yield put(setToAccount(action.payload));
-  yield put(updateValues());
+  const fromAccount: IAccount = yield select(getFromAccount);
+
+  if (action.payload === fromAccount) {
+    yield put(reverse());
+  } else {
+    yield put(setToAccount(action.payload));
+    yield put(updateValues());
+  }
 }
 
 // WATCHERS

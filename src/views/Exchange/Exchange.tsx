@@ -2,7 +2,7 @@ import React from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
 import { Wrapper, Title, ExchangeButtonWrapper, CloseWrapper, Overlay } from './Exchange.styles';
 import { withTranslation, WithTranslation } from 'react-i18next';
-import { RoundedButton } from '../../components/Buttons/RoundedButton';
+import { AnimatedRoundedButton } from '../../components/Buttons/AnimatedRoundedButton';
 import { FiMaximize2, FiX } from 'react-icons/fi';
 import { reverse, setBaseAccount, setFromAccount, setToAccount } from '../../store/echange/actions';
 import { connect } from 'react-redux';
@@ -54,9 +54,9 @@ class Exchange extends React.Component<TProps> {
         <Overlay />
         <Title>{t('exchange.title')}</Title>
         <ExchangeButtonWrapper>
-          <RoundedButton onClick={reverse}>
+          <AnimatedRoundedButton onClick={reverse}>
             <FiMaximize2 color={'#0075eb'} size={24} />
-          </RoundedButton>
+          </AnimatedRoundedButton>
         </ExchangeButtonWrapper>
         <CloseWrapper>
           <RoundedLink to={Routes.HOME}>

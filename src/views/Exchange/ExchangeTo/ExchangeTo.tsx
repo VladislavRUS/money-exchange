@@ -5,6 +5,7 @@ import { changeToAccount, changeToValue, setBaseAccount } from '../../../store/e
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 import { getFormattedToValue } from '../../../store/echange/selectors';
+import { BaseExchangeMode } from '../BaseExchange/BaseExchange';
 
 const mapStateToProps = (state: IApplicationState) => ({
   toAccount: state.exchange.toAccount,
@@ -35,6 +36,7 @@ const ExchangeTo: React.FC<TProps> = ({ toAccount, toValue, changeToValue, chang
       onChangeValue={changeToValue}
       onSelectAccount={changeToAccount}
       onSetBaseAccount={setBaseAccount}
+      mode={BaseExchangeMode.TO}
     />
   );
 

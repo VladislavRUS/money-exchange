@@ -1,11 +1,10 @@
 import React from 'react';
-import { Wrapper, SelectWrapper, BigInput } from './BaseExchange.styles';
+import { Wrapper, SelectWrapper, ExchangeInput } from './BaseExchange.styles';
 import { IAccount } from '../../../store/accounts/types';
 import { RegularInput } from '../../../components/RegularInput';
 import { Select } from '../../../components/Select';
 import { IApplicationState } from '../../../store';
 import { connect } from 'react-redux';
-import { i18n } from '../../../i18n';
 
 export enum BaseExchangeMode {
   FROM,
@@ -16,7 +15,7 @@ interface IBaseExchangeProps {
   mode?: BaseExchangeMode;
   placeholder?: string;
   account: IAccount;
-  value: number;
+  value: string;
   onChangeValue: (value: number) => void;
   onSelectAccount: (account: IAccount) => void;
   onSetBaseAccount: (account: IAccount) => void;
@@ -38,6 +37,10 @@ type TState = {
 };
 
 class BaseExchange extends React.Component<TProps, TState> {
+  caretStart: number | null = null;
+  caretEnd: number | null = null;
+  exchangeInputRef: any;
+
   constructor(props: TProps) {
     super(props);
     this.state = {
@@ -51,14 +54,10 @@ class BaseExchange extends React.Component<TProps, TState> {
     if (prevProps.account !== this.props.account) {
       this.onReset();
     }
-  }
 
-  getFormattedValue(value: number) {
-    return new Intl.NumberFormat(i18n.language, {
-      useGrouping: true,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2,
-    }).format(value);
+    if (prevProps.value !== this.props.value && this.exchangeInputRef && this.caretStart && this.caretEnd) {
+      this.exchangeInputRef.setSelectionRange(this.caretStart, this.caretEnd);
+    }
   }
 
   getTitleFromAccount = (account: IAccount) => account.currency + ' ' + account.title;
@@ -83,6 +82,9 @@ class BaseExchange extends React.Component<TProps, TState> {
     }
 
     const parsedValue = parseFloat(value.replace(/,/g, ''));
+
+    this.caretStart = event.currentTarget.selectionStart;
+    this.caretEnd = event.currentTarget.selectionEnd;
 
     this.props.onChangeValue(parsedValue);
   };
@@ -118,14 +120,16 @@ class BaseExchange extends React.Component<TProps, TState> {
     );
   };
 
+  handleExchangeInputtRef = (element: any) => {
+    this.exchangeInputRef = element;
+  };
+
   onFocus = () => {
     this.props.onSetBaseAccount(this.props.account);
   };
 
   render() {
     const { value, mode = BaseExchangeMode.FROM } = this.props;
-
-    const formattedValue = value ? this.getFormattedValue(value) : '';
 
     return (
       <Wrapper mode={mode}>
@@ -146,7 +150,13 @@ class BaseExchange extends React.Component<TProps, TState> {
             )}
           </Select>
         </SelectWrapper>
-        <BigInput onChange={this.onChange} placeholder={'0'} value={formattedValue} onFocus={this.onFocus} />
+        <ExchangeInput
+          onChange={this.onChange}
+          placeholder={'0'}
+          value={value}
+          onFocus={this.onFocus}
+          ref={this.handleExchangeInputtRef}
+        />
       </Wrapper>
     );
   }

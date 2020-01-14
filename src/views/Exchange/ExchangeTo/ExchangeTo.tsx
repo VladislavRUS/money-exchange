@@ -4,10 +4,11 @@ import { IApplicationState } from '../../../store';
 import { changeToAccount, changeToValue, setBaseAccount } from '../../../store/echange/actions';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
+import { getFormattedToValue } from '../../../store/echange/selectors';
 
 const mapStateToProps = (state: IApplicationState) => ({
   toAccount: state.exchange.toAccount,
-  toValue: state.exchange.toValue,
+  toValue: getFormattedToValue(state),
 });
 
 type TStateProps = ReturnType<typeof mapStateToProps>;

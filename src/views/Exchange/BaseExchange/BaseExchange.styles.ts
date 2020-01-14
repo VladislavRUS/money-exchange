@@ -23,6 +23,6 @@ export const SelectWrapper = styled.div`
   max-width: 416px;
 `;
 
-export const BigInput = styled.input`
+export const ExchangeInput = styled.input`
   font-size: 48px;
 `;

@@ -1,4 +1,5 @@
 import { IApplicationState } from '../index';
+import { countAccountsInOneCurrency } from '../../utils/countAccountsInOneCurrency';
 
 export const getTotalBalance = (state: IApplicationState) => {
   const { rates } = state.rates;
@@ -7,13 +8,5 @@ export const getTotalBalance = (state: IApplicationState) => {
     return 0;
   }
 
-  let sumInDollars = 0;
-
-  state.accounts.list.forEach(account => {
-    sumInDollars += account.value * rates[account.currency];
-  });
-
-  const { baseCurrency } = state.accounts;
-
-  return sumInDollars * rates[baseCurrency];
+  return countAccountsInOneCurrency(rates, state.accounts.list, state.accounts.baseCurrency);
 };

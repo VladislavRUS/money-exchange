@@ -1,0 +1,10 @@
+[
+    {
+        "fromAccountId": "d1672f5f-6c7b-4c6f-a107-70e347b99636",
+        "fromAccountValue": 120,
+        "toAccountId": "6fae3aa6-9ff1-4008-a150-c00c1c2037e2",
+        "toAccountValue": 23,
+        "valueInDollars": 200,
+        "dateTime": "2020-01-15T13:42:20.814Z"
+    }
+]

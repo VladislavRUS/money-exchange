@@ -9,5 +9,6 @@
   "app.links.cards": "Карты",
   "app.links.transactions": "Транзакции",
   "exchange.title": "Обмен денег",
-  "exchange.currentRate": "Текущий курс"
+  "exchange.currentRate": "Текущий курс",
+  "exchange.continue": "Продолжить"
 }

@@ -1,3 +1,4 @@
+import { ITransactionsState } from './transactions/types';
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
@@ -14,6 +15,7 @@ import { all, fork } from 'redux-saga/effects';
 import { ratesSaga } from './rates/sagas';
 import { IRatesState } from './rates/types';
 import { ratesReducer } from './rates/reducer';
+import { transactionsReducer } from './transactions/reducer';
 
 export interface IApplicationState {
   user: IUserState;
@@ -21,6 +23,7 @@ export interface IApplicationState {
   currencies: ICurrenciesState;
   exchange: IExchangeState;
   rates: IRatesState;
+  transactions: ITransactionsState;
 }
 
 export const createRootReducer = (history: History) =>
@@ -30,6 +33,7 @@ export const createRootReducer = (history: History) =>
     currencies: currenciesReducer,
     exchange: exchangeReducer,
     rates: ratesReducer,
+    transactions: transactionsReducer,
     router: connectRouter(history),
   });
 

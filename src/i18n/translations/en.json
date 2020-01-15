@@ -9,5 +9,6 @@
   "app.links.cards": "Cards",
   "app.links.transactions": "Transactions",
   "exchange.title": "Exchange money",
-  "exchange.currentRate": "Current rate"
+  "exchange.currentRate": "Current rate",
+  "exchange.continue": "Continue"
 }

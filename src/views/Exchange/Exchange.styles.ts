@@ -36,3 +36,11 @@ export const CloseWrapper = styled.div`
   top: 25px;
   right: 50px;
 `;
+
+export const ContinueButtonWrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  width: 300px;
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dispatch, bindActionCreators } from 'redux';
-import { Wrapper, Title, ExchangeButtonWrapper, CloseWrapper, Overlay } from './Exchange.styles';
+import { bindActionCreators, Dispatch } from 'redux';
+import { CloseWrapper, ContinueButtonWrapper, ExchangeButtonWrapper, Overlay, Title, Wrapper } from './Exchange.styles';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { AnimatedRoundedButton } from '../../components/Buttons/AnimatedRoundedButton';
 import { FiMaximize2, FiX } from 'react-icons/fi';
@@ -11,9 +11,13 @@ import { Routes } from '../../constants/Routes';
 import { IApplicationState } from '../../store';
 import { ExchangeFrom } from './ExchangeFrom';
 import { ExchangeTo } from './ExchangeTo';
+import { RegularTextButton } from '../../components/Buttons/RegularTextButton';
+import { Modal } from '../../components/Modal';
+import { BaseButtonLook } from '../../components/Buttons/BaseButton';
 
 const mapStateToProps = (state: IApplicationState) => ({
   accounts: state.accounts.list,
+  isContinueAvailable: state.exchange.fromValue !== 0,
 });
 
 type TStateProps = ReturnType<typeof mapStateToProps>;
@@ -33,7 +37,19 @@ type TDispatchProps = ReturnType<typeof mapDispatchToProps>;
 
 type TProps = TStateProps & TDispatchProps & WithTranslation;
 
-class Exchange extends React.Component<TProps> {
+type TState = {
+  isModalOpened: boolean;
+};
+
+class Exchange extends React.Component<TProps, TState> {
+  constructor(props: TProps) {
+    super(props);
+
+    this.state = {
+      isModalOpened: false,
+    };
+  }
+
   componentDidMount() {
     const { accounts } = this.props;
 
@@ -46,8 +62,16 @@ class Exchange extends React.Component<TProps> {
     }
   }
 
+  onModalOpen = () => {
+    this.setState({ isModalOpened: true });
+  };
+
+  onModalClose = () => {
+    this.setState({ isModalOpened: false });
+  };
+
   render() {
-    const { reverse, t } = this.props;
+    const { isContinueAvailable, reverse, t } = this.props;
 
     return (
       <Wrapper>
@@ -66,6 +90,17 @@ class Exchange extends React.Component<TProps> {
 
         <ExchangeFrom />
         <ExchangeTo />
+
+        <ContinueButtonWrapper>
+          <RegularTextButton
+            text={t('exchange.continue')}
+            onClick={this.onModalOpen}
+            look={BaseButtonLook.SUCCESS}
+            isDisabled={!isContinueAvailable}
+          />
+        </ContinueButtonWrapper>
+
+        <Modal isOpened={this.state.isModalOpened} onRequestClose={this.onModalClose} />
       </Wrapper>
     );
   }

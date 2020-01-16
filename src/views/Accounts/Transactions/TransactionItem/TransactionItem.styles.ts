@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  height: 48px;
+  padding: 16px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.2);
+  }
 
   & + & {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 
@@ -37,7 +44,9 @@ const Value = styled.div`
   color: rgb(139, 149, 158);
 `;
 
-export const Title = styled(Key)``;
+export const Title = styled(Key)`
+  margin-bottom: 8px;
+`;
 
 export const Details = styled.div`
   font-size: 13px;
@@ -50,9 +59,11 @@ export const Sum = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
   margin-left: auto;
 `;
 
-export const Minus = styled(Key)``;
+export const Minus = styled(Key)`
+  margin-bottom: 8px;
+`;
+
 export const Plus = styled(Value)``;

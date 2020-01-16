@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Routes } from '../../constants/Routes';
 import { getRates } from '../../store/rates/actions';
 import { connect } from 'react-redux';
+import { SuspenseFallback } from '../../components/SuspenceFallback';
 
 const Home = lazy(() => import('../../views/Home'));
 const Exchange = lazy(() => import('../../views/Exchange'));
@@ -36,7 +37,7 @@ class App extends React.Component<TProps> {
 
   render() {
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<SuspenseFallback />}>
         <Switch>
           <Switch>
             <Route path={Routes.EXCHANGE} component={Exchange} />

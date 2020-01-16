@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Routes } from '../../constants/Routes';
 import { InlineNavbar } from '../../components/InlineNavbar';
 import { withTranslation, WithTranslation } from 'react-i18next';
+import { SuspenseFallback } from '../../components/SuspenceFallback';
 
 const AccountsList = lazy(() => import('./AccountsList'));
 const Transactions = lazy(() => import('./Transactions'));
@@ -27,7 +28,7 @@ const Accounts: React.FC<WithTranslation> = ({ t }) => (
     <NavbarWrapper>
       <InlineNavbar links={links.map(link => ({ ...link, title: t(link.titleTranslationKey) }))} />
     </NavbarWrapper>
-    <Suspense fallback={null}>
+    <Suspense fallback={<SuspenseFallback />}>
       <Switch>
         <Route path={Routes.TRANSACTIONS} component={Transactions} />
         <Route path={Routes.ACCOUNTS} component={AccountsList} />

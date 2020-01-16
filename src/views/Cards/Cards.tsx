@@ -5,6 +5,7 @@ import { Routes } from '../../constants/Routes';
 import { InlineNavbar } from '../../components/InlineNavbar';
 import { Route, Switch } from 'react-router-dom';
 import { PhysicalCards } from './PhysicalCards';
+import { SuspenseFallback } from '../../components/SuspenceFallback';
 
 type TProps = WithTranslation;
 
@@ -26,7 +27,7 @@ class Cards extends React.Component<TProps> {
         <NavbarWrapper>
           <InlineNavbar links={links.map(link => ({ ...link, title: t(link.titleTranslationKey) }))} />
         </NavbarWrapper>
-        <Suspense fallback={null}>
+        <Suspense fallback={<SuspenseFallback />}>
           <Switch>
             <Route path={Routes.CARDS} component={PhysicalCards} />
           </Switch>

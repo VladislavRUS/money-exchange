@@ -10,6 +10,7 @@ import { getCurrencyData } from '../../../../store/currencies/selectors';
 import { TextButton } from '../../../../components/Buttons/TextButton';
 import { Select } from '../../../../components/Select';
 import { setBaseCurrency } from '../../../../store/accounts/actions';
+import { formatValueInLocale } from '../../../../utils/formatMoneyInLocale';
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -27,14 +28,8 @@ const mapStateToProps = (state: IApplicationState) => {
 
   const totalBalance = getTotalBalance(state);
 
-  const formattedTotalBalance = new Intl.NumberFormat(i18n.language, {
-    useGrouping: true,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(totalBalance);
-
   return {
-    totalBalance: formattedTotalBalance,
+    totalBalance,
     symbol,
     flag,
     rates,
@@ -94,13 +89,15 @@ class Balance extends React.Component<TProps, TState> {
       return null;
     }
 
-    const [integer, fraction] = totalBalance.split('.');
+    const formattedTotalBalance = formatValueInLocale(i18n.language, totalBalance);
+
+    const [integer, fraction] = formattedTotalBalance.split('.');
     return (
       <Wrapper>
         <Amount>
           {symbol}
           <IntegerDigits>{integer}</IntegerDigits>
-          <FractionDigits>.{fraction}</FractionDigits>
+          {fraction && <FractionDigits>.{fraction}</FractionDigits>}
         </Amount>
         <BaseCurrency>
           <Flag flagImage={flag} />

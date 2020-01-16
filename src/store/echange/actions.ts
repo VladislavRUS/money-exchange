@@ -22,3 +22,13 @@ export const setToValue = (value: number) => action(ExchangeActionTypes.SET_TO_V
 
 // Update another account according to base
 export const updateValues = () => action(ExchangeActionTypes.UPDATE_VALUES);
+
+export const setComment = (text: string) => action(ExchangeActionTypes.SET_COMMENT, text);
+
+export const exchange = () => action(ExchangeActionTypes.EXCHANGE);
+
+export const setExchangeModalVisibility = (isVisible: boolean) =>
+  action(ExchangeActionTypes.SET_EXCHANGE_MODAL_VISIBILITY, isVisible);
+
+export const setHasExchanged = (hasExchanged: boolean) => action(ExchangeActionTypes.SET_HAS_EXCHANGED, hasExchanged);
+export const clearExchange = () => action(ExchangeActionTypes.CLEAR_EXCHANGE);

@@ -5,6 +5,7 @@ import { IApplicationState } from '../../../../../store';
 import { getCurrencyData } from '../../../../../store/currencies/selectors';
 import { connect } from 'react-redux';
 import { i18n } from '../../../../../i18n';
+import { formatValueInLocale } from '../../../../../utils/formatMoneyInLocale';
 
 const mapStateToProps = (state: IApplicationState, ownProps: IAccountItemProps) => {
   const { symbol, flag } = getCurrencyData(state, ownProps.account.currency);
@@ -34,7 +35,7 @@ const AccountItem: React.FC<TProps> = ({ account, symbol, flag }) => (
     </Header>
     <Value>
       {symbol}
-      {new Intl.NumberFormat(i18n.language, { useGrouping: true, minimumFractionDigits: 2 }).format(account.value)}
+      {formatValueInLocale(i18n.language, account.value)}
     </Value>
   </Wrapper>
 );

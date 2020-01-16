@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Wrapper, Action, Hint } from './Actions.styles';
-import { FiArrowRight, FiPlus, FiRefreshCcw } from 'react-icons/fi';
+import { FiArrowRight, FiPlus, FiRefreshCw } from 'react-icons/fi';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { RoundedLink, RoundedLinkLook } from '../../../../components/RoundedLink';
 import { Routes } from '../../../../constants/Routes';
@@ -17,7 +17,7 @@ const Actions: React.FC<WithTranslation> = ({ t }) => (
 
     <Action>
       <RoundedLink to={Routes.EXCHANGE}>
-        <FiRefreshCcw size={24} color={'#000'} />
+        <FiRefreshCw size={24} color={'#000'} />
       </RoundedLink>
       <Hint>{t('accounts.hints.exchange')}</Hint>
     </Action>

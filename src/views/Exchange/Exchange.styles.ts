@@ -24,7 +24,7 @@ export const Title = styled.h2`
   font-size: 32px;
 `;
 
-export const ExchangeButtonWrapper = styled.div`
+export const ReverseButtonWrapper = styled.div`
   position: absolute;
   top: 150px;
   left: 50%;
@@ -40,7 +40,15 @@ export const CloseWrapper = styled.div`
 export const ContinueButtonWrapper = styled.div`
   position: absolute;
   left: 50%;
-  bottom: 50px;
+  bottom: 30px;
   transform: translateX(-50%);
-  width: 300px;
+  width: 350px;
+`;
+
+export const ScreenHolderContent = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

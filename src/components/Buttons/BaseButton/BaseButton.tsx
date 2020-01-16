@@ -9,7 +9,6 @@ export enum BaseButtonLook {
 interface IBaseButtonProps {
   onClick: () => void;
   isDisabled?: boolean;
-  isLoading?: boolean;
   look?: BaseButtonLook;
   showBorder?: boolean;
 }

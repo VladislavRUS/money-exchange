@@ -8,7 +8,18 @@
   "app.links.accounts": "Accounts",
   "app.links.cards": "Cards",
   "app.links.transactions": "Transactions",
-  "exchange.title": "Exchange money",
+  "app.loading": "Loading...",
+  "exchange.continue": "Continue",
   "exchange.currentRate": "Current rate",
-  "exchange.continue": "Continue"
+  "exchange.exchangeModal.amountTitle": "Total",
+  "exchange.exchangeModal.comment": "Comment",
+  "exchange.exchangeModal.exchange": "Exchange",
+  "exchange.exchangeModal.from": "From",
+  "exchange.exchangeModal.rate": "Rate",
+  "exchange.exchangeModal.to": "To",
+  "exchange.exchangeModal.total": "Total",
+  "exchange.gotIt": "Got it",
+  "exchange.title": "Exchange money",
+  "exchange.to": "to",
+  "exchange.youExchanged": "You exchanged"
 }

@@ -16,6 +16,7 @@ import { ratesSaga } from './rates/sagas';
 import { IRatesState } from './rates/types';
 import { ratesReducer } from './rates/reducer';
 import { transactionsReducer } from './transactions/reducer';
+import { transactionsSaga } from './transactions/sagas';
 
 export interface IApplicationState {
   user: IUserState;
@@ -38,5 +39,5 @@ export const createRootReducer = (history: History) =>
   });
 
 export function* rootSaga() {
-  yield all([fork(exchangeSaga), fork(ratesSaga)]);
+  yield all([fork(exchangeSaga), fork(ratesSaga), fork(transactionsSaga)]);
 }

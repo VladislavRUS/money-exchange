@@ -1,3 +1,5 @@
+import { ITransaction } from './../transactions/types';
+import { createTransaction } from './../transactions/actions';
 import { all, fork, put, select, takeEvery } from 'redux-saga/effects';
 import { ExchangeActionTypes } from './types';
 import {
@@ -15,8 +17,6 @@ import {
 } from './actions';
 import { getRates } from '../rates/selectors';
 import { getBaseAccount, getFromAccount, getFromValue, getToAccount, getToValue } from './selectors';
-import { IAccount } from '../accounts/types';
-import { IRates } from '../rates/types';
 import { convertBetweenCurrencies } from '../../utils/covertBetweenCurrencies';
 
 function* handleChangeFromValue(action: ReturnType<typeof changeFromValue>) {
@@ -30,17 +30,17 @@ function* handleChangeToValue(action: ReturnType<typeof changeToValue>) {
 }
 
 function* handleUpdateValues() {
-  const rates: IRates = yield select(getRates);
-  const baseAccount: IAccount = yield select(getBaseAccount);
-  const fromAccount: IAccount = yield select(getFromAccount);
-  const toAccount: IAccount = yield select(getToAccount);
+  const rates: ReturnType<typeof getRates> = yield select(getRates);
+  const baseAccount: ReturnType<typeof getBaseAccount> = yield select(getBaseAccount);
+  const fromAccount: ReturnType<typeof getFromAccount> = yield select(getFromAccount);
+  const toAccount: ReturnType<typeof getToAccount> = yield select(getToAccount);
 
   if (!rates || !fromAccount || !toAccount || !baseAccount) {
     return;
   }
 
-  const currentFromValue: number = yield select(getFromValue);
-  const currentToValue: number = yield select(getToValue);
+  const currentFromValue: ReturnType<typeof getFromValue> = yield select(getFromValue);
+  const currentToValue: ReturnType<typeof getToValue> = yield select(getToValue);
 
   if (fromAccount === baseAccount) {
     const toValue = convertBetweenCurrencies(fromAccount.currency, currentFromValue, toAccount.currency, rates);
@@ -52,9 +52,13 @@ function* handleUpdateValues() {
 }
 
 function* handleReverse() {
-  const fromAccount: IAccount = yield select(getFromAccount);
-  const toAccount: IAccount = yield select(getToAccount);
-  const baseAccount: IAccount = yield select(getBaseAccount);
+  const fromAccount: ReturnType<typeof getFromAccount> = yield select(getFromAccount);
+  const toAccount: ReturnType<typeof getToAccount> = yield select(getToAccount);
+  const baseAccount: ReturnType<typeof getBaseAccount> = yield select(getBaseAccount);
+
+  if (!fromAccount || !toAccount || !baseAccount) {
+    return;
+  }
 
   yield put(setFromAccount(toAccount));
   yield put(setToAccount(fromAccount));
@@ -69,7 +73,7 @@ function* handleReverse() {
 }
 
 function* handleChangeFromAccount(action: ReturnType<typeof changeFromAccount>) {
-  const toAccount: IAccount = yield select(getToAccount);
+  const toAccount: ReturnType<typeof getToAccount> = yield select(getToAccount);
 
   if (action.payload === toAccount) {
     yield put(reverse());
@@ -80,7 +84,7 @@ function* handleChangeFromAccount(action: ReturnType<typeof changeFromAccount>) 
 }
 
 function* handleChangeToAccount(action: ReturnType<typeof changeToAccount>) {
-  const fromAccount: IAccount = yield select(getFromAccount);
+  const fromAccount: ReturnType<typeof getFromAccount> = yield select(getFromAccount);
 
   if (action.payload === fromAccount) {
     yield put(reverse());
@@ -88,6 +92,32 @@ function* handleChangeToAccount(action: ReturnType<typeof changeToAccount>) {
     yield put(setToAccount(action.payload));
     yield put(updateValues());
   }
+}
+
+function* handleExchange() {
+  const fromAccount: ReturnType<typeof getFromAccount> = yield select(getFromAccount);
+  const toAccount: ReturnType<typeof getToAccount> = yield select(getToAccount);
+  const rates: ReturnType<typeof getRates> = yield select(getRates);
+
+  if (!fromAccount || !toAccount || !rates) {
+    return;
+  }
+
+  const fromValue: ReturnType<typeof getFromValue> = yield select(getFromValue);
+  const toValue: ReturnType<typeof getToValue> = yield select(getToValue);
+
+  const valueInDollars = convertBetweenCurrencies(toAccount.currency, fromValue, fromAccount.currency, rates);
+
+  const transaction: ITransaction = {
+    fromAccountId: fromAccount.id,
+    fromAccountValue: fromValue,
+    toAccountId: toAccount.id,
+    toAccountValue: toValue,
+    valueInDollars,
+    dateTime: new Date().toISOString(),
+  };
+
+  yield put(createTransaction(transaction));
 }
 
 // WATCHERS
@@ -115,6 +145,10 @@ function* watchChangeToAccount() {
   yield takeEvery(ExchangeActionTypes.CHANGE_TO_ACCOUNT, handleChangeToAccount);
 }
 
+function* watchExchange() {
+  yield takeEvery(ExchangeActionTypes.EXCHANGE, handleExchange);
+}
+
 function* exchangeSaga() {
   yield all([
     fork(watchChangeFromValue),
@@ -123,6 +157,7 @@ function* exchangeSaga() {
     fork(watchReverse),
     fork(watchChangeFromAccount),
     fork(watchChangeToAccount),
+    fork(watchExchange),
   ]);
 }
 

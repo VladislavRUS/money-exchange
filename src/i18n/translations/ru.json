@@ -8,7 +8,18 @@
   "app.links.accounts": "Аккаунты",
   "app.links.cards": "Карты",
   "app.links.transactions": "Транзакции",
-  "exchange.title": "Обмен денег",
+  "app.loading": "Загрузка...",
+  "exchange.continue": "Продолжить",
   "exchange.currentRate": "Текущий курс",
-  "exchange.continue": "Продолжить"
+  "exchange.exchangeModal.amountTitle": "Всего",
+  "exchange.exchangeModal.comment": "Комментарий",
+  "exchange.exchangeModal.exchange": "Обменять",
+  "exchange.exchangeModal.from": "Откуда",
+  "exchange.exchangeModal.rate": "Курс",
+  "exchange.exchangeModal.to": "Куда",
+  "exchange.exchangeModal.total": "Всего",
+  "exchange.gotIt": "Понятно",
+  "exchange.title": "Обмен денег",
+  "exchange.to": "на",
+  "exchange.youExchanged": "Вы обменяли"
 }

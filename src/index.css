@@ -12,12 +12,13 @@ body {
 }
 
 :focus {
-    box-shadow: 0 0 0 3px rgba(0, 136, 255, 0.4);
-    outline: none;
+    outline: 3px solid rgba(0, 136, 255, 0.4);
 }
 
 body.using-mouse :focus {
     outline: none;
-    box-shadow: none;
 }
 
+input, button {
+    font-family: inherit;
+}

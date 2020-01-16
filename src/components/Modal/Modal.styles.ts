@@ -12,7 +12,7 @@ const fadeIn = keyframes`
 
 const slideIn = keyframes`
     0% {
-        transform: translateY(10%);
+        transform: translateY(30%);
     }    
 
     100% {
@@ -26,19 +26,28 @@ export const Overlay = styled.div`
   right: 0;
   bottom: 0;
   top: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(230, 230, 230, 0.8);
   animation: ${fadeIn} 0.25s ease;
+  z-index: 1000;
+`;
+
+export const ContentWrapper = styled.div`
+  position: relative;
+  animation: ${slideIn} 0.25s ease;
+  overflow-y: hidden;
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 `;
 
 export const Content = styled.div`
   position: relative;
+  width: 450px;
   background-color: #fff;
-  border-radius: 6px;
-  animation: ${slideIn} 0.25s ease;
-  width: 400px;
 `;
 
 export const CloseIconWrapper = styled.button`

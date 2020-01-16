@@ -10,6 +10,9 @@ const initialState: IExchangeState = {
   fromValue: 0,
   toValue: 0,
   baseAccount: null,
+  comment: '',
+  isExchangeModalVisible: false,
+  hasExchanged: false,
 };
 
 export const exchangeReducer = createReducer<IExchangeState, ExchangeAction>(initialState, {
@@ -24,4 +27,14 @@ export const exchangeReducer = createReducer<IExchangeState, ExchangeAction>(ini
   }),
   [ExchangeActionTypes.SET_FROM_VALUE]: (state, action) => ({ ...state, fromValue: action.payload }),
   [ExchangeActionTypes.SET_TO_VALUE]: (state, action) => ({ ...state, toValue: action.payload }),
+  [ExchangeActionTypes.SET_COMMENT]: (state, action) => ({ ...state, comment: action.payload }),
+  [ExchangeActionTypes.SET_EXCHANGE_MODAL_VISIBILITY]: (state, action) => ({
+    ...state,
+    isExchangeModalVisible: action.payload,
+  }),
+  [ExchangeActionTypes.SET_HAS_EXCHANGED]: (state, action) => ({
+    ...state,
+    hasExchanged: action.payload,
+  }),
+  [ExchangeActionTypes.CLEAR_EXCHANGE]: () => initialState,
 });

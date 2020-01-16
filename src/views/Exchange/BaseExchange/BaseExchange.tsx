@@ -18,6 +18,8 @@ import { IApplicationState } from '../../../store';
 import { connect } from 'react-redux';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { convertBetweenCurrencies } from '../../../utils/covertBetweenCurrencies';
+import { formatValueInLocale } from '../../../utils/formatMoneyInLocale';
+import { i18n } from '../../../i18n';
 
 const MAX_VALUE_LENGTH = 15;
 
@@ -100,10 +102,10 @@ class BaseExchange extends React.Component<TProps, TState> {
 
       if (fromAccount === baseAccount) {
         const toValue = convertBetweenCurrencies(fromAccount.currency, 1, toAccount.currency, rates);
-        return `${fromAccountSymbol}1 = ${toAccountSymbol}${toValue.toFixed(2)}`;
+        return `${fromAccountSymbol}1 = ${toAccountSymbol}${formatValueInLocale(i18n.language, toValue)}`;
       } else {
         const fromValue = convertBetweenCurrencies(toAccount.currency, 1, fromAccount.currency, rates);
-        return `${toAccountSymbol}1 = ${fromAccountSymbol}${fromValue.toFixed(2)}`;
+        return `${toAccountSymbol}1 = ${fromAccountSymbol}${formatValueInLocale(i18n.language, fromValue)}`;
       }
     }
 

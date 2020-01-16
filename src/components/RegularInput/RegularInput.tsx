@@ -10,20 +10,41 @@ interface IRegularInputProps {
   onFocus?: () => void;
 }
 
-class RegularInput extends React.Component<IRegularInputProps> {
+type TState = {
+  isFocused: boolean;
+};
+
+class RegularInput extends React.Component<IRegularInputProps, TState> {
+  constructor(props: IRegularInputProps) {
+    super(props);
+
+    this.state = {
+      isFocused: false,
+    };
+  }
+
   onChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.onChangeText(event.currentTarget.value);
   };
 
+  onFocus = () => {
+    this.setState({ isFocused: true });
+    this.props.onFocus && this.props.onFocus();
+  };
+
+  onBlur = () => {
+    this.setState({ isFocused: false });
+  };
+
   render() {
-    const { value, placeholder = '', icon = null, forwardRef, onFocus } = this.props;
+    const { value, placeholder = '', icon = null, forwardRef } = this.props;
 
     return (
       <Wrapper ref={forwardRef}>
-        <StyledInput value={value} onChange={this.onChange} onFocus={onFocus} />
+        <StyledInput value={value} onChange={this.onChange} onFocus={this.onFocus} onBlur={this.onBlur} />
         {icon}
-        {placeholder && <Placeholder hasValue={Boolean(value)}>{placeholder}</Placeholder>}
-        <BottomLine />
+        {placeholder && <Placeholder isFocused={this.state.isFocused || Boolean(value)}>{placeholder}</Placeholder>}
+        <BottomLine isFocused={this.state.isFocused} />
       </Wrapper>
     );
   }

@@ -27,6 +27,7 @@ export const StyledButton = styled.button<{ isDisabled: boolean; look: BaseButto
     props.look === BaseButtonLook.SUCCESS &&
     css`
       background-color: rgb(235, 0, 141);
+      box-shadow: 0 5px 10px -2px rgb(235, 0, 141);
 
       &:active {
         background-color: rgb(198, 0, 115);

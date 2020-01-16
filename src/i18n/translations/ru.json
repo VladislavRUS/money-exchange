@@ -22,5 +22,6 @@
   "exchange.title": "Обмен денег",
   "exchange.to": "на",
   "exchange.youExchanged": "Вы обменяли",
-  "transactions.item.exchangedTo": "Перевод на"
+  "transactions.item.exchangedTo": "Перевод на",
+  "app.links.physicalCards": "Физические карты"
 }

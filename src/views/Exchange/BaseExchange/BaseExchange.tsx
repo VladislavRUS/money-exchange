@@ -186,6 +186,7 @@ class BaseExchange extends React.Component<TProps, TState> {
             onClick={() => {
               this.onCloseSelect(this.getTitleFromAccount(account));
               this.props.onSelectAccount(account);
+              this.props.onSetBaseAccount(account);
             }}
             key={account.id}
           />

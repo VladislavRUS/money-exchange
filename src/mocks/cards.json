@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "lastDigits": "4934",
+    "spent": 200,
+    "owner": "Luk King",
+    "avatarUrl": "https://avatars.dicebear.com/v2/male/1.svg"
+  },
+  {
+    "id": "2",
+    "lastDigits": "4934",
+    "spent": 1300,
+    "owner": "Emilia Thompson",
+    "avatarUrl": "https://avatars.dicebear.com/v2/female/2.svg"
+  },
+  {
+    "id": "3",
+    "lastDigits": "4934",
+    "spent": 4500,
+    "owner": "Grace Umbrella",
+    "avatarUrl": "https://avatars.dicebear.com/v2/female/3.svg"
+  },
+  {
+    "id": "4",
+    "lastDigits": "4934",
+    "spent": 800,
+    "owner": "Tom Brake",
+    "avatarUrl": "https://avatars.dicebear.com/v2/male/4.svg"
+  }
+]

@@ -22,5 +22,6 @@
   "exchange.title": "Exchange money",
   "exchange.to": "to",
   "exchange.youExchanged": "You exchanged",
-  "transactions.item.exchangedTo": "Exchanged to"
+  "transactions.item.exchangedTo": "Exchanged to",
+  "app.links.physicalCards": "Physical cards"
 }

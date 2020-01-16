@@ -17,6 +17,8 @@ import { IRatesState } from './rates/types';
 import { ratesReducer } from './rates/reducer';
 import { transactionsReducer } from './transactions/reducer';
 import { transactionsSaga } from './transactions/sagas';
+import { ICardsState } from './cards/types';
+import { cardsReducer } from './cards/reducer';
 
 export interface IApplicationState {
   user: IUserState;
@@ -24,6 +26,7 @@ export interface IApplicationState {
   currencies: ICurrenciesState;
   exchange: IExchangeState;
   rates: IRatesState;
+  cards: ICardsState;
   transactions: ITransactionsState;
 }
 
@@ -35,6 +38,7 @@ export const createRootReducer = (history: History) =>
     exchange: exchangeReducer,
     rates: ratesReducer,
     transactions: transactionsReducer,
+    cards: cardsReducer,
     router: connectRouter(history),
   });
 

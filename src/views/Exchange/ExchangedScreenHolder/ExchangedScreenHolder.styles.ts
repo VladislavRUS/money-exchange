@@ -29,7 +29,7 @@ export const Summary = styled.h2`
   flex-direction: column;
   align-items: center;
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
 `;
 
 export const Top = styled.div`

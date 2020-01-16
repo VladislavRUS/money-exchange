@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import 'reset-css';
 import './index.css';
 import { App } from './entry/App';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import configureStore from './configureStore';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import './i18n';
 
-export const history = createBrowserHistory();
+export const history = createHashHistory();
 // @ts-ignore
 const initialState = window.initialReduxState;
 const store = configureStore(history, initialState);

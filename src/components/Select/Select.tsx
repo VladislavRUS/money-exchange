@@ -26,10 +26,10 @@ class Select extends React.Component<TProps> {
   };
 
   render() {
-    const { isOpened, children, onClickOutside } = this.props;
+    const { isOpened, children, onClickOutside, ...props } = this.props;
 
     return (
-      <Dropdown isOpened={isOpened} content={this.renderContent} onClickOutside={onClickOutside}>
+      <Dropdown {...props} isOpened={isOpened} content={this.renderContent} onClickOutside={onClickOutside}>
         {ref => children(ref)}
       </Dropdown>
     );

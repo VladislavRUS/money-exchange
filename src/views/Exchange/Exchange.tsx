@@ -25,7 +25,10 @@ import { ExchangedScreenHolder } from './ExchangedScreenHolder';
 
 const mapStateToProps = (state: IApplicationState) => ({
   accounts: state.accounts.list,
-  isContinueAvailable: state.exchange.fromValue !== 0,
+  isContinueAvailable:
+    state.exchange.fromValue !== 0 &&
+    state.exchange.fromAccount &&
+    state.exchange.fromValue < state.exchange.fromAccount.value,
   isExchangeModalVisible: state.exchange.isExchangeModalVisible,
 });
 

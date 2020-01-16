@@ -21,5 +21,6 @@
   "exchange.gotIt": "Понятно",
   "exchange.title": "Обмен денег",
   "exchange.to": "на",
-  "exchange.youExchanged": "Вы обменяли"
+  "exchange.youExchanged": "Вы обменяли",
+  "transactions.item.exchangedTo": "Перевод на"
 }

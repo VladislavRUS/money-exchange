@@ -21,5 +21,6 @@
   "exchange.gotIt": "Got it",
   "exchange.title": "Exchange money",
   "exchange.to": "to",
-  "exchange.youExchanged": "You exchanged"
+  "exchange.youExchanged": "You exchanged",
+  "transactions.item.exchangedTo": "Exchanged to"
 }

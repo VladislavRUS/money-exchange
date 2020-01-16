@@ -34,20 +34,22 @@ export const Overlay = styled.div`
   background-color: rgba(230, 230, 230, 0.8);
   animation: ${fadeIn} 0.25s ease;
   z-index: 1000;
+  overflow-y: auto;
+  padding: 150px 0;
 `;
 
 export const ContentWrapper = styled.div`
   position: relative;
   animation: ${slideIn} 0.25s ease;
-  overflow-y: hidden;
-  box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
 `;
 
 export const Content = styled.div`
   position: relative;
   width: 450px;
   background-color: #fff;
+  overflow-y: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.2);
 `;
 
 export const CloseIconWrapper = styled.button`

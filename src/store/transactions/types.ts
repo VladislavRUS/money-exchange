@@ -5,12 +5,13 @@ export interface ITransactionsState {
 }
 
 export interface ITransaction {
+  id: string;
   fromAccountId: string;
   fromAccountValue: number;
   toAccountId: string;
   toAccountValue: number;
   valueInDollars: number;
-  dateTime: string;
+  dateTime: number;
 }
 
 export enum TransactionsActionTypes {

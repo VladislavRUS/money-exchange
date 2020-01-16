@@ -109,15 +109,16 @@ function* handleExchange() {
   const valueInDollars = convertBetweenCurrencies(toAccount.currency, fromValue, fromAccount.currency, rates);
 
   const transaction: ITransaction = {
+    id: new Date().getTime().toString(),
     fromAccountId: fromAccount.id,
     fromAccountValue: fromValue,
     toAccountId: toAccount.id,
     toAccountValue: toValue,
     valueInDollars,
-    dateTime: new Date().toISOString(),
+    dateTime: new Date().getTime(),
   };
 
-  yield put(createTransaction(transaction));
+  yield put(createTransaction(fromAccount, toAccount, transaction));
 }
 
 // WATCHERS

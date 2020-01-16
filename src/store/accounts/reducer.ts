@@ -15,4 +15,14 @@ export const accountsReducer = createReducer<IAccountsState, AccountsAction>(ini
   [AccountsActionsTypes.SET_GRID_VIEW_MODE]: state => ({ ...state, viewMode: 'grid' }),
   [AccountsActionsTypes.SET_TABLE_VIEW_MODE]: state => ({ ...state, viewMode: 'table' }),
   [AccountsActionsTypes.SET_BASE_CURRENCY]: (state, action) => ({ ...state, baseCurrency: action.payload }),
+  [AccountsActionsTypes.SET_ACCOUNT_VALUE]: (state, action) => ({
+    ...state,
+    list: state.list.map(account => {
+      if (account.id === action.payload.accountId) {
+        return { ...account, value: action.payload.value };
+      }
+
+      return account;
+    }),
+  }),
 });

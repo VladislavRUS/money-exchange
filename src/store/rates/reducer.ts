@@ -1,13 +1,12 @@
 import * as ratesActions from './actions';
 import { ActionType, createReducer } from 'typesafe-actions';
 import { IRatesState, RatesActionTypes } from './types';
-import rates from '../../mocks/rates.json';
 
 type RatesAction = ActionType<typeof ratesActions>;
 
 const initialState: IRatesState = {
   isLoading: false,
-  rates,
+  rates: null,
 };
 
 const ratesReducer = createReducer<IRatesState, RatesAction>(initialState, {

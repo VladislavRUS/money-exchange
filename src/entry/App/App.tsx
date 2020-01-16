@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 const Home = lazy(() => import('../../views/Home'));
 const Exchange = lazy(() => import('../../views/Exchange'));
 
+const UPDATE_INTERVAL_MS = 10000;
+
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
@@ -21,8 +23,15 @@ type TDispatchProps = ReturnType<typeof mapDispatchToProps>;
 type TProps = TDispatchProps;
 
 class App extends React.Component<TProps> {
+  ratesInterval: number | null = null;
+
   componentDidMount() {
-    //this.props.getRates();
+    this.props.getRates();
+    this.ratesInterval = window.setInterval(this.props.getRates, UPDATE_INTERVAL_MS);
+  }
+
+  componentWillUnmount() {
+    this.ratesInterval && window.clearInterval(this.ratesInterval);
   }
 
   render() {

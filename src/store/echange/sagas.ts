@@ -18,6 +18,7 @@ import {
 import { getRates } from '../rates/selectors';
 import { getBaseAccount, getFromAccount, getFromValue, getToAccount, getToValue } from './selectors';
 import { convertBetweenCurrencies } from '../../utils/covertBetweenCurrencies';
+import { RatesActionTypes } from '../rates/types';
 
 function* handleChangeFromValue(action: ReturnType<typeof changeFromValue>) {
   yield put(setFromValue(action.payload));
@@ -131,7 +132,7 @@ function* watchChangeToValue() {
 }
 
 function* watchUpdatesValue() {
-  yield takeEvery([ExchangeActionTypes.UPDATE_VALUES], handleUpdateValues);
+  yield takeEvery([ExchangeActionTypes.UPDATE_VALUES, RatesActionTypes.GET_RATES_SUCCESS], handleUpdateValues);
 }
 
 function* watchReverse() {

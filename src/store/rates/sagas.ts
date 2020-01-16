@@ -2,6 +2,7 @@ import { all, fork, takeEvery, put, call } from 'redux-saga/effects';
 import { RatesActionTypes } from './types';
 import { fetchRatesAsync } from './actions';
 import { RATES_API } from '../../api';
+import mockRates from '../../mocks/rates.json';
 
 function* handleGetRates() {
   yield put(fetchRatesAsync.request());
@@ -12,7 +13,7 @@ function* handleGetRates() {
 
     yield put(fetchRatesAsync.success(rates));
   } catch (e) {
-    yield put(fetchRatesAsync.failure());
+    yield put(fetchRatesAsync.success(mockRates));
   }
 }
 

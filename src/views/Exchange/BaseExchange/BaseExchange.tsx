@@ -21,7 +21,7 @@ import { convertBetweenCurrencies } from '../../../utils/covertBetweenCurrencies
 import { formatValueInLocale } from '../../../utils/formatMoneyInLocale';
 import { i18n } from '../../../i18n';
 
-const MAX_VALUE_LENGTH = 15;
+const MAX_VALUE = 1000000000;
 
 export enum BaseExchangeMode {
   FROM = 'exchange-from',
@@ -151,13 +151,17 @@ class BaseExchange extends React.Component<TProps, TState> {
   onChange = (event: React.FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value || '0';
 
-    if (!/^[0-9.,]+$/.test(value) || value.length > MAX_VALUE_LENGTH) {
+    if (!/^[0-9.,]+$/.test(value)) {
       return;
     }
 
     this.caretStart = event.currentTarget.selectionStart;
 
     const parsedValue = parseFloat(value.replace(/,/g, ''));
+
+    if (parsedValue > MAX_VALUE) {
+      return;
+    }
 
     this.props.onChangeValue(parsedValue);
   };

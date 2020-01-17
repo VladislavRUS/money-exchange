@@ -1,5 +1,5 @@
-import { ITransaction } from './../transactions/types';
-import { createTransaction } from './../transactions/actions';
+import { ITransaction } from '../transactions/types';
+import { createTransaction } from '../transactions/actions';
 import { all, fork, put, select, takeEvery } from 'redux-saga/effects';
 import { ExchangeActionTypes } from './types';
 import {

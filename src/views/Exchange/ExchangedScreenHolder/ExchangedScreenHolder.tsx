@@ -66,8 +66,6 @@ class ExchangedScreenHolder extends React.Component<TProps> {
   render() {
     const { transaction, currencies, hasExchanged, t } = this.props;
 
-    console.log(hasExchanged);
-
     if (!transaction || !this.fromAccount || !this.toAccount || !currencies) {
       return null;
     }

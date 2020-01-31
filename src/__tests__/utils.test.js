@@ -27,15 +27,17 @@ const accounts = [
   },
 ];
 
-it('convert to the same currency', () => {
-  expect(convertBetweenCurrencies('GBP', 1, 'GBP', rates)).toBeCloseTo(1);
-});
+describe('Working with currencies', () => {
+  it('convert to the same currency', () => {
+    expect(convertBetweenCurrencies('GBP', 1, 'GBP', rates)).toBeCloseTo(1);
+  });
 
-it('convert between currencies', () => {
-  expect(convertBetweenCurrencies('GBP', 1, 'USD', rates)).toBeCloseTo(1.3064);
-  expect(convertBetweenCurrencies('USD', 1, 'GBP', rates)).toBeCloseTo(0.77);
-});
+  it('convert between currencies', () => {
+    expect(convertBetweenCurrencies('GBP', 1, 'USD', rates)).toBeCloseTo(1.3064);
+    expect(convertBetweenCurrencies('USD', 1, 'GBP', rates)).toBeCloseTo(0.77);
+  });
 
-it('count accounts in one currency', () => {
-  expect(countAccountsInOneCurrency(rates, accounts, 'GBP')).toBeCloseTo(36290.39);
+  it('count accounts in one currency', () => {
+    expect(countAccountsInOneCurrency(rates, accounts, 'GBP')).toBeCloseTo(36290.39);
+  });
 });

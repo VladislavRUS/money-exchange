@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import { BaseButton } from '../components/Buttons/BaseButton';
 import { StyledButton } from '../components/Buttons/BaseButton/BaseButton.styles';
-import '../setupTests';
 
 describe('<BaseButton />', () => {
   it('simulates click events', () => {

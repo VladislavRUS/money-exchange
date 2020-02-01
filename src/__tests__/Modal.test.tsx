@@ -1,12 +1,12 @@
 import React from 'react';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Modal } from '../components/Modal';
 import { CloseIconWrapper } from '../components/Modal/Modal.styles';
 
 describe('<Modal />', () => {
   it('hides content when closed', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Modal isOpened={false}>
         <div className={'content'}>content</div>
       </Modal>,
@@ -16,7 +16,7 @@ describe('<Modal />', () => {
   });
 
   it('shows content when opened', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Modal isOpened={true}>
         <div className={'content'}>content</div>
       </Modal>,
@@ -28,7 +28,7 @@ describe('<Modal />', () => {
   it('calls onRequestClose', () => {
     const onRequestClose = sinon.spy();
 
-    const wrapper = mount(
+    const wrapper = shallow(
       <Modal isOpened={true} onRequestClose={onRequestClose}>
         <div className={'content'}>content</div>
       </Modal>,
@@ -39,7 +39,7 @@ describe('<Modal />', () => {
   });
 
   it('renders external content', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Modal isOpened={true} externalContent={() => <div className={'external'}>external content</div>}>
         <div className={'content'}>content</div>
       </Modal>,

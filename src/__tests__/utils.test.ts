@@ -10,18 +10,26 @@ const rates = {
 
 const accounts = [
   {
+    id: '1',
+    title: 'test 1',
     currency: 'GBP',
     value: 28600,
   },
   {
+    id: '2',
+    title: 'test 2',
     currency: 'USD',
     value: 14700,
   },
   {
+    id: '3',
+    title: 'test 3',
     currency: 'AUD',
     value: 5300,
   },
   {
+    id: '4',
+    title: 'test 4',
     currency: 'EUR',
     value: 3490,
   },

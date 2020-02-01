@@ -3,8 +3,8 @@ import TetherComponent from 'react-tether';
 
 interface IDropdownProps {
   isOpened: boolean;
-  children: (ref: React.RefObject<HTMLElement>) => React.ReactNode;
-  content: (ref: React.RefObject<HTMLElement>) => React.ReactNode;
+  children: (ref: React.RefObject<any>) => React.ReactNode;
+  content: (ref: React.RefObject<any>) => React.ReactNode;
   onClickOutside?: () => void;
   attachment?: string;
 }

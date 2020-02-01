@@ -11,6 +11,7 @@ interface IBaseButtonProps {
   isDisabled?: boolean;
   look?: BaseButtonLook;
   showBorder?: boolean;
+  dataTestId?: string;
 }
 
 export const RegularButton: React.FC<IBaseButtonProps> = ({
@@ -19,8 +20,9 @@ export const RegularButton: React.FC<IBaseButtonProps> = ({
   onClick,
   look = BaseButtonLook.DEFAULT,
   showBorder = false,
+  dataTestId,
 }) => (
-  <StyledButton isDisabled={isDisabled} onClick={onClick} look={look} showBorder={showBorder}>
+  <StyledButton isDisabled={isDisabled} onClick={onClick} look={look} showBorder={showBorder} data-test-id={dataTestId}>
     {children}
   </StyledButton>
 );

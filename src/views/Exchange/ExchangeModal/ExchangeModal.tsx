@@ -81,6 +81,7 @@ class ExchangeModal extends React.Component<TProps> {
           onClick={exchange}
           look={BaseButtonLook.SUCCESS}
           isDisabled={isLoading}
+          dataTestId={'exchange'}
         />
       </ExchangeButtonWrapper>
     );
@@ -145,6 +146,7 @@ class ExchangeModal extends React.Component<TProps> {
                 value={comment}
                 onChangeText={setComment}
                 placeholder={t('exchange.exchangeModal.comment')}
+                dataTestId={'comment'}
               />
             </CommentInputWrapper>
             <TotalWrapper>

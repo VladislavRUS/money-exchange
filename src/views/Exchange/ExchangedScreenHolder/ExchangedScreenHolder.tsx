@@ -92,7 +92,12 @@ class ExchangedScreenHolder extends React.Component<TProps> {
             </Bottom>
           </Summary>
           <GotButtonWrapper>
-            <RegularTextButton text={t('exchange.gotIt')} onClick={this.onGot} look={BaseButtonLook.SUCCESS} />
+            <RegularTextButton
+              text={t('exchange.gotIt')}
+              onClick={this.onGot}
+              look={BaseButtonLook.SUCCESS}
+              dataTestId={'got-it'}
+            />
           </GotButtonWrapper>
         </Wrapper>
       </ScreenHolder>

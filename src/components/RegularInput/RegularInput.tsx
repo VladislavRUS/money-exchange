@@ -8,6 +8,7 @@ interface IRegularInputProps {
   icon?: React.ReactNode;
   forwardRef?: any;
   onFocus?: () => void;
+  dataTestId?: string;
 }
 
 type TState = {
@@ -37,11 +38,17 @@ class RegularInput extends React.Component<IRegularInputProps, TState> {
   };
 
   render() {
-    const { value, placeholder = '', icon = null, forwardRef } = this.props;
+    const { value, placeholder = '', icon = null, forwardRef, dataTestId } = this.props;
 
     return (
       <Wrapper ref={forwardRef}>
-        <StyledInput value={value} onChange={this.onChange} onFocus={this.onFocus} onBlur={this.onBlur} />
+        <StyledInput
+          value={value}
+          onChange={this.onChange}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          data-test-id={dataTestId}
+        />
         {icon}
         {placeholder && <Placeholder isFocused={this.state.isFocused || Boolean(value)}>{placeholder}</Placeholder>}
         <BottomLine isFocused={this.state.isFocused} />

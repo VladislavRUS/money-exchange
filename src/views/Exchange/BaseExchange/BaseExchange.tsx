@@ -238,6 +238,7 @@ class BaseExchange extends React.Component<TProps, TState> {
             <Currency htmlFor={mode.toString()}>{currencySymbol}</Currency>
             <ExchangeInput
               id={mode.toString()}
+              data-test-id={mode.toString()}
               onChange={this.onChange}
               value={inputValue}
               placeholder={'0'}

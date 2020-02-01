@@ -79,7 +79,7 @@ class Exchange extends React.Component<TProps> {
         <Overlay />
         <Title>{t('exchange.title')}</Title>
         <ReverseButtonWrapper>
-          <AnimatedRoundedButton onClick={reverse}>
+          <AnimatedRoundedButton onClick={reverse} dataTestId={'reverse'}>
             <FiRefreshCw color={'#0075eb'} size={24} />
           </AnimatedRoundedButton>
         </ReverseButtonWrapper>
@@ -99,6 +99,7 @@ class Exchange extends React.Component<TProps> {
               onClick={this.onModalOpen}
               look={BaseButtonLook.SUCCESS}
               isDisabled={!isContinueAvailable}
+              dataTestId={'continue'}
             />
           </ContinueButtonWrapper>
         )}
